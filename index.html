@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Weather Clock</title>
+  </head>
+  <body onload="airEngine('Dhaka');">
+    <header>
+      <nav class="px-3 py-2">
+        <div class="navbar bg-base-100 flex-col md:flex-row">
+          <div class="flex-1">
+            <a href="https://arpon-svg.github.io/" target="_blank" class="btn btn-ghost normal-case text-3xl">Weather Clock</a>
+          </div>
+          <div class="flex-none gap-2">
+            <div class="form-control">
+              <input
+                type="text"
+                placeholder="Enter City Here"
+                class="input input-bordered"
+                id="search"
+              />
+            </div>
+            <button
+              class="btn btn-primary normal-case text-lg"
+              onclick="trigu()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="container max-w-screen-lg mx-auto px-2 my-5">
+        <!-- Location Details Section Start -->
+        <h1 class="text-4xl md:text-6xl text-center mb-5">Weather Details</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div class="card bg-green-500 text-white shadow-xl md:col-span-2">
+            <div class="card-body text-center flex">
+              <p class="text-3xl text-gray-600">Country</p>
+              <p id="country" class="text-4xl">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-emerald-600 text-white shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">City Name</p>
+              <p class="text-4xl" id="name">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-green-400 text-black shadow-xl md:col-span-1">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-700">Local Time</p>
+              <p class="text-2xl" id="localtime">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-green-600 text-white shadow-xl md:col-span-2">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Time Zone</p>
+              <p class="text-3xl" id="tz_id">Loading...</p>
+            </div>
+          </div>
+        </div>
+        <!-- Location Details Section End -->
+        <!-- Weather Details Section Start -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3">
+          <div class="card bg-red-500 text-white shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Temperature (C)</p>
+              <p class="text-4xl" id="temp_c">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-blue-700 text-white shadow-xl">
+            <div class="card-body text-center flex">
+              <p class="text-3xl text-gray-300">Condition</p>
+              <div class="flex items-center" id="condition">
+                <img src="" alt="" height="72px" width="72px" />
+                <span class="text-4xl">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-violet-400 text-black shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-200">UV Index</p>
+              <p class="text-4xl text-white" id="uv">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-indigo-500 text-white shadow-xl md:col-span-1">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Wind Speed km/h</p>
+              <p class="text-4xl" id="wind_kph">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-orange-600 text-white shadow-xl md:col-span-1">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Wind Direction</p>
+              <p class="text-4xl" id="wind_dir">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-cyan-700 text-white shadow-xl md:col-span-1">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Cloud</p>
+              <p class="text-4xl"><span id="cloud">Loading...</span>%</p>
+            </div>
+          </div>
+        </div>
+        <!-- Weather Details Section End -->
+        <!-- Air Quality Section Start -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-3">
+          <div class="card bg-red-600 text-white shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Carbon Monoxide</p>
+              <p class="text-4xl" id="co">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-red-700 text-white shadow-xl">
+            <div class="card-body text-center flex">
+              <p class="text-3xl text-gray-300">Ozone</p>
+              <div class="flex items-center" id="condition">
+                <p class="text-4xl" id="o3">Loading...</p>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-blue-700 text-black shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Nitrogen dioxide</p>
+              <p class="text-4xl text-white" id="no2">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-fuchsia-600 text-white shadow-xl">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Sulphur dioxide</p>
+              <p class="text-4xl" id="so2">Loading...</p>
+            </div>
+          </div>
+          <div class="card bg-gray-600 text-white shadow-xl md:col-span-2">
+            <div class="card-body text-center">
+              <p class="text-2xl text-gray-300">Air Quality</p>
+              <p class="text-4xl" id="us-epa-index">Loading...</p>
+            </div>
+          </div>
+        </div>
+        <!-- Air Quality Section End -->
+      </section>
+      <script src="./main.js"></script>
+    </main>
+  </body>
+</html>
